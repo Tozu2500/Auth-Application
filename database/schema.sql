@@ -24,3 +24,18 @@ CREATE TABLE Users (
     UNIQUE KEY uk_users_username (username),
     UNIQUE KEY uk_users_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Refresh tokens table
+
+CREATE TABLE refresh_tokens (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    token VARCHAR(255) NOT NULL,
+    expiry_date DATETIME(6) NOT NULL,
+    user_id BIGINT,
+
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_refresh_tokens_token (token),
+    CONSTRAINT fk_refresh_tokens_user
+        FOREIGN KEY (user_id) REFERENCES users (id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
