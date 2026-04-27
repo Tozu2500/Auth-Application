@@ -56,6 +56,7 @@ public class AuthService {
         extraClaims.put("email", savedUser.getEmail());
 
         String accessToken = jwtService.generateToken(extraClaims, savedUser);
+        
     }
 
 }
