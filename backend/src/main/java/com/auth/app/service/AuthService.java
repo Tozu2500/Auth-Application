@@ -56,7 +56,16 @@ public class AuthService {
         extraClaims.put("email", savedUser.getEmail());
 
         String accessToken = jwtService.generateToken(extraClaims, savedUser);
-        
+        String refreshToken = refreshTokenService.createRefreshToken(savedUser.getId());
+
+        return AuthResponse.builder()
+            .accessToken(accessToken)
+            .refreshToken(refreshToken.getToken())
+            .tokenType("Bearer")
+            .user(mapToUserResponse(savedUser))
+            .build();
     }
+
+    
 
 }
