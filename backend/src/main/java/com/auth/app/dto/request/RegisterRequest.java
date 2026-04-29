@@ -33,5 +33,4 @@ public class RegisterRequest {
     @NotBlank(message = "Last name is required")
     @Size(max = 50, message = "Last name must be at most 50 characters")
     private String lastName;
-    
 }

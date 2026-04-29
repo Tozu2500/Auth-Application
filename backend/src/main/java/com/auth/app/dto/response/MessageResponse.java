@@ -1,13 +1,12 @@
 package com.auth.app.dto.response;
 
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -22,17 +21,17 @@ public class MessageResponse {
 
     public static MessageResponse success(String message) {
         return MessageResponse.builder()
-            .message(message)
-            .success(true)
-            .timestamp(LocalDateTime.now())
-            .build();
+                .message(message)
+                .success(true)
+                .timestamp(LocalDateTime.now())
+                .build();
     }
 
     public static MessageResponse error(String message) {
         return MessageResponse.builder()
-            .message(message)
-            .success(false)
-            .timestamp(LocalDateTime.now())
-            .build();
+                .message(message)
+                .success(false)
+                .timestamp(LocalDateTime.now())
+                .build();
     }
 }

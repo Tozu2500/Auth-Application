@@ -22,5 +22,4 @@ public class ChangePasswordRequest {
 
     @NotBlank(message = "Confirm password is required")
     private String confirmPassword;
-    
 }
