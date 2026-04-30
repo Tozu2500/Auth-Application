@@ -18,5 +18,12 @@ const authService = {
     async register(data: RegisterRequest): Promise<AuthResponse> {
         const response = await api.post<AuthResponse>("/auth/register", data);
         return response.data;
-    }
+    },
+
+    async refreshToken(refreshToken: string): Promise<AuthResponse> {
+        const response = await api.post<AuthResponse>("/auth/refresh-token", {
+            refreshToken,
+        });
+        return response.data;
+    },
 }
