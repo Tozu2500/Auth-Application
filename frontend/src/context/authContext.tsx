@@ -5,7 +5,7 @@ import {
     ReactNode,
     useCallback,
 } from "react";
-import { User, LoginRequest, RegisterRequest, AuthResponse } from "../types";
+import { User, LoginRequest, RegisterRequest, AuthResponse } from "../types/index.ts";
 import authService from "../services/authService";
 
 interface AuthContextType {
