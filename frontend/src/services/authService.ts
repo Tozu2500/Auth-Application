@@ -7,7 +7,7 @@ import {
     MessageResponse,
     RegisterRequest,
     User,
-} from "../types";
+} from "../types/index.ts";
 
 const authService = {
     async login(data: LoginRequest): Promise<AuthResponse> {
