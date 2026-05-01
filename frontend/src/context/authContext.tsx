@@ -6,7 +6,7 @@ import {
     useCallback,
 } from "react";
 import { User, LoginRequest, RegisterRequest, AuthResponse } from "../types/index.ts";
-import authService from "../services/authService";
+import authService from "../services/authService.ts";
 
 interface AuthContextType {
     user: User | null;
