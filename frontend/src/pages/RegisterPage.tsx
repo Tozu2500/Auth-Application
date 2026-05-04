@@ -93,9 +93,67 @@ const RegisterPage = () => {
         <div className="page auth-page">
             <div className="auth-card auth-card-wide">
                 <h2>Create Account</h2>
-                <p className="auth-subtitle">Join us! Fill details down below!</p>
+                <p className="auth-subtitle">Join us! Fill in your details down below!</p>
 
-                /* Line 94 */
+                {serverError && <div className="alert alert-error">{serverError}</div>}
+
+                <form onSubmit={handleSubmit}>
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label htmlFor="firstName">First Name</label>
+                            <input
+                                id="firstName"
+                                type="text"
+                                name="firstName"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                placeholder="John"
+                                required
+                            />
+                            {errors.firstName && (
+                                <span className="field-error">{errors.firstName}</span>
+                            )}
+                        </div>
+                        
+                        <div className="form-group">
+                            <label htmlFor="lastName">Last Name</label>
+                            <input 
+                                id="lastName"
+                                type="text"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                placeholder="Doe"
+                                required
+                            />
+                            {errors.lastName && (
+                                <span className="field-error">{errors.lastName}</span>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <input 
+                            id="username"
+                            type="text"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            placeholder="johndoe"
+                            required
+                            minLength={3}
+                            autoComplete="username"
+                        />
+                        {errors.username && (
+                            <span className="field-error">{errors.username}</span>
+                        )}
+                    </div>
+
+                    <div className="form-group">
+                        /* Line 150 */
+                    </div>
+                </form>
             </div>
         </div>
     );
