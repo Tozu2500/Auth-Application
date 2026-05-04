@@ -151,11 +151,75 @@ const RegisterPage = () => {
                     </div>
 
                     <div className="form-group">
-                        /* Line 150 */
+                        <label htmlFor="email">Email</label>
+                        <input 
+                            id="email"
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="john@example.com"
+                            required
+                            autoComplete="email"
+                        />
+                        {errors.email && (
+                            <span className="field-error">{errors.email}</span>
+                        )}
                     </div>
+
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input 
+                                id="password"
+                                type="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                placeholder="Min 6 chars"
+                                required
+                                minLength={6}
+                                autoComplete="new-password"
+                            />
+                            {errors.password && (
+                                <span className="field-error">{errors.password}</span>
+                            )}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <input 
+                                id="confirmPassword"
+                                type="password"
+                                name="confirmPassword"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                placeholder="Repeat password"
+                                required
+                                autoComplete="new-password"
+                            />
+                            {errors.confirmPassword && (
+                                <span className="field-error">{errors.confirmPassword}</span>
+                            )}
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="btn btn-primary btn-block"
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting ? 'Creating account...' : 'Create Account'}
+                    </button>
                 </form>
+
+                <p className="auth-footer">
+                    Already have an account? <Link to="/login">Sign In</Link>
+                </p>
             </div>
         </div>
     );
 
 }
+
+export default RegisterPage;
