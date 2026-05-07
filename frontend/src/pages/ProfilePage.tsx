@@ -54,8 +54,42 @@ const ProfilePage = () => {
 
             <div className="profile-grid">
                 <div className="profile-card">
-                    
+                    <h3>Personal Information</h3>
+                    <div className="info-list">
+                        <div className="info-item">
+                            <span className="info-label">First Name</span>
+                            <span className="info-value">{user?.firstName}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Last Name</span>
+                            <span className="info-value">{user?.lastName}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Username</span>
+                            <span className="info-value">{user?.username}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Email</span>
+                            <span className="info-value">{user?.email}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Role</span>
+                            <span className={`badge ${user?.role === 'ROLE_ADMIN' ? 'badge-admin' : 'badge-user'}`}>
+                                {user?.role === 'ROLE_ADMIN' ? 'Administrator' : 'User'}
+                            </span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Member Since</span>
+                            <span className="info-value">
+                                {user?.createdAt
+                                    ? new Date(user.createdAt).toLocaleDateString()
+                                    : 'N/A'}
+                            </span>
+                        </div>
+                    </div>
                 </div>
+
+                
             </div>
         </div>
     );
