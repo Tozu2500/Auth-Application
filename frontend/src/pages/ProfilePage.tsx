@@ -89,7 +89,9 @@ const ProfilePage = () => {
                     </div>
                 </div>
 
-                
+                <div className="profile-card">
+                    
+                </div>
             </div>
         </div>
     );

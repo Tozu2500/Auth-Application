@@ -47,6 +47,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Loading spinner */
 .loading-container {
     display: flex;
     flex-direction: column;
