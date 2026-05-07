@@ -19,31 +19,32 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (userRepository.existsByUsername("testuser")) return;
+        if (!userRepository.existsByUsername("user")) {
+            User user = User.builder()
+                    .username("user")
+                    .email("user@example.com")
+                    .password(passwordEncoder.encode("user123"))
+                    .firstName("Regular")
+                    .lastName("User")
+                    .role(Role.ROLE_USER)
+                    .enabled(true)
+                    .accountNonLocked(true)
+                    .build();
+            userRepository.save(user);
+        }
 
-        User user = User.builder()
-                .username("testuser")
-                .email("test@example.com")
-                .password(passwordEncoder.encode("password123"))
-                .firstName("Test")
-                .lastName("User")
-                .role(Role.ROLE_USER)
-                .enabled(true)
-                .accountNonLocked(true)
-                .build();
-
-        User admin = User.builder()
-                .username("admin")
-                .email("admin@example.com")
-                .password(passwordEncoder.encode("admin123"))
-                .firstName("Admin")
-                .lastName("User")
-                .role(Role.ROLE_ADMIN)
-                .enabled(true)
-                .accountNonLocked(true)
-                .build();
-
-        userRepository.save(user);
-        if (!userRepository.existsByUsername("admin")) userRepository.save(admin);
+        if (!userRepository.existsByUsername("admin")) {
+            User admin = User.builder()
+                    .username("admin")
+                    .email("admin@example.com")
+                    .password(passwordEncoder.encode("admin123"))
+                    .firstName("Admin")
+                    .lastName("User")
+                    .role(Role.ROLE_ADMIN)
+                    .enabled(true)
+                    .accountNonLocked(true)
+                    .build();
+            userRepository.save(admin);
+        }
     }
 }

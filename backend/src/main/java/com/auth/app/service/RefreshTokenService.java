@@ -35,9 +35,8 @@ public class RefreshTokenService {
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new RuntimeException("User was not found"));
 
-        // Delete existing refresh token for user
-        refreshTokenRepository.findByUser(user)
-            .ifPresent(refreshTokenRepository::delete);
+        // Delete any existing refresh token for this user before creating a new one
+        refreshTokenRepository.deleteByUser(user);
 
         RefreshToken refreshToken = RefreshToken.builder()
             .user(user)
@@ -45,7 +44,7 @@ public class RefreshTokenService {
             .expiryDate(Instant.now().plusMillis(refreshTokenExpiration))
             .build();
 
-        return refreshTokenRepository.save(refreshToken);
+        return refreshTokenRepository.saveAndFlush(refreshToken);
     }
 
     public RefreshToken verifyExpiration(RefreshToken token) {
