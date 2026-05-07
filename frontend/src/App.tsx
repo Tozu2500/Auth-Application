@@ -10,28 +10,30 @@ import AdminPage from './pages/AdminPage';
 import './App.css';
 
 function App() {
-    return(
-        <div className="app">
-            <Navbar />
-            <main className="main-content">
-                <Routes>
-                    {/* Public routes */}
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
+  return (
+    <div className="app">
+      <Navbar />
+      <main className="main-content">
+        <Routes>
+          {/* Public routes */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
 
-                    {/* Protected routes (authenticated users) */}
-                    <Route element={<ProtectedRoute />}>
-                        <Route path="/dashboard" element={<DashboardPage />} />
-                        <Route path="/profile" element={<ProfilePage />} />
-                    </Route>
+          {/* Protected routes (any authenticated user) */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+          </Route>
 
-                    {/* Admin only routes */}
-                    <Route element={<ProtectedRoute requiredRole="ROLE_ADMIN" />}>
-                        <Route path="/admin" element={<AdminPage />} />
-                    </Route>
-                </Routes>
-            </main>
-        </div>
-    );
+          {/* Admin-only routes */}
+          <Route element={<ProtectedRoute requiredRole="ROLE_ADMIN" />}>
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
+        </Routes>
+      </main>
+    </div>
+  );
 }
+
+export default App;
