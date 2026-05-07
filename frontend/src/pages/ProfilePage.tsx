@@ -90,9 +90,79 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="profile-card">
-                    
+                    <h3>Change Password</h3>
+
+                    {message && <div className="alert alert-success">{message}</div>}
+                    {error && <div className="alert alert-error">{error}</div>}
+
+                    <form onSubmit={handlePasswordChange}>
+                        <div className="form-group">
+                            <label htmlFor="currentPassword">Current Password</label>
+                            <input
+                                id="currentPassword"
+                                type="password"
+                                value={passwordForm.currentPassword}
+                                onChange={(e) =>
+                                    setPasswordForm((prev) => ({
+                                        ...prev,
+                                        currentPassword: e.target.value,
+                                    }))
+                                }
+                                placeholder="Enter current password"
+                                required
+                                autoComplete="current-password"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="newPassword">New Password</label>
+                            <input 
+                                id="newPassword"
+                                type="password"
+                                value={passwordForm.newPassword}
+                                onChange={(e) =>
+                                    setPasswordForm((prev) => ({
+                                        ...prev,
+                                        newPassword: e.target.value,
+                                    }))
+                                }
+                                placeholder="Min 6 characters"
+                                required
+                                minLength={6}
+                                autoComplete="new-password"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="confirmNewPassword">Confirm New Password</label>
+                            <input 
+                                id="confirmNewPassword"
+                                type="password"
+                                value={passwordForm.confirmPassword}
+                                onChange={(e) =>
+                                    setPasswordForm((prev) => ({
+                                        ...prev,
+                                        confirmPassword: e.target.value,
+                                    }))
+                                }
+                                placeholder="Repeat new password"
+                                required
+                                autoComplete="new-password"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="btn btn-primary btn-block"
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? 'Changing...' : 'Change Password'}
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     );
-}
+};
+
+export default ProfilePage;
